@@ -3,24 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walden - 我的作品</title>
+    <title>我的作品 - Walden</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .portfolio-card-content {
+            padding: 12px;
+        }
+
+        .portfolio-card h3 {
+            margin: 0 0 6px 0;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .portfolio-card p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .content {
+            padding-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        body {
+            background: transparent;
+        }
+
+        .gradient-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff99cc, #ff66b3, #ff33cc);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div id="backgroundCanvas"></div>
+    <div class="gradient-background"></div>
     <header class="navbar">
         <div class="logo"><img src="images/profile/logo.png" alt="网站 Logo" style="height: 40px;"></div>
         <ul>
-            <li><a href="../index.html">首页</a></li>
-            <li><a href="#">我的作品</a></li>
-            <li><a href="../blog.html">我的博客</a></li>
-            <li><a href="../projects.html">我的项目</a></li>
-            <li><a href="../about.html">关于我</a></li>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="portfolio.html">我的作品</a></li>
+            <li><a href="blog.html">我的博客</a></li>
+            <li><a href="projects.html">我的项目</a></li>
+            <li><a href="about.html">关于我</a></li>
         </ul>
     </header>
     <div class="content">
-        <h1>我的作品</h1>
-        <p>这里展示我的作品。</p>
+        <div class="gradient-background"></div>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&auto=format" alt="金融App设计">
+                <div class="portfolio-card-content">
+                    <h3>数字银行App设计</h3>
+                    <p>重新定义移动支付体验，通过简洁的界面设计和流畅的交互流程，让金融服务更加便捷。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&auto=format" alt="健康监测App">
+                <div class="portfolio-card-content">
+                    <h3>健康监测平台</h3>
+                    <p>为用户打造个性化的健康管理体验，结合数据可视化，让健康管理变得简单直观。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=500&auto=format" alt="办公协作平台">
+                <div class="portfolio-card-content">
+                    <h3>远程办公协作平台</h3>
+                    <p>专注提升团队协作效率，整合文档、会议、任务管理等功能，打造无缝协作体验。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500&auto=format" alt="智能家居控制">
+                <div class="portfolio-card-content">
+                    <h3>智能家居控制中心</h3>
+                    <p>通过直观的界面设计，让用户轻松控制家中各种智能设备，打造智能生活方式。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&auto=format" alt="教育平台设计">
+                <div class="portfolio-card-content">
+                    <h3>在线教育平台改版</h3>
+                    <p>重新设计学习体验，融入游戏化元素，提高学习参与度和完课率。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&auto=format" alt="数据分析平台">
+                <div class="portfolio-card-content">
+                    <h3>企业数据分析平台</h3>
+                    <p>将复杂的数据分析过程可视化，帮助决策者快速洞察业务趋势。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1511512578044-8b4e1f1b8e3b?w=500&auto=format" alt="旅行App设计">
+                <div class="portfolio-card-content">
+                    <h3>智能旅行助手</h3>
+                    <p>整合旅行规划、订票、导航等功能，为用户提供一站式旅行解决方案。</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <img src="https://images.unsplash.com/photo-1595776613215-fe04b78de7d0?w=500&auto=format" alt="音乐App设计">
+                <div class="portfolio-card-content">
+                    <h3>音乐流媒体App</h3>
+                    <p>重新设计音乐播放体验，加入社交元素，让音乐分享更有趣。</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="js/dynamic-background.js"></script>
+    <script>
+        new DynamicBackground();
+    </script>
 </body>
 </html>
