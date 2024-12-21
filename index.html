@@ -5,36 +5,314 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walden - 首页</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .dynamic-shape {
-            transition: left 0.5s, top 0.5s;
-        }
-    </style>
 </head>
 <body>
-    <div id="backgroundCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span>
+                    <span data-letter="W">W</span>
+                    <span data-letter="A">A</span>
+                    <span data-letter="L">L</span>
+                    <span data-letter="D">D</span>
+                    <span data-letter="E">E</span>
+                    <span data-letter="N">N</span>
+                </span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="particleCanvas"></canvas>
+    <div class="mouse-events-layer"></div>
+    <div id="backgroundCanvas"></div>
     <div class="gradient-background"></div>
     <header class="navbar">
-        <div class="logo">
+        <a href="index.html" class="logo">
             <img src="images/profile/logo.png" alt="网站 Logo">
             <span>Walden</span>
-        </div>
+        </a>
         <ul>
-            <li><a href="./index.html">首页</a></li>
-            <li><a href="./portfolio.html">我的作品</a></li>
-            <li><a href="./blog.html">我的博客</a></li>
-            <li><a href="./projects.html">我的项目</a></li>
-            <li><a href="./about.html">关于我</a></li>
+            <li><a href="index.html" class="active">首页</a></li>
+            <li><a href="portfolio.html">我的作品</a></li>
+            <li><a href="projects.html">我的项目</a></li>
+            <li><a href="blog.html">我的博客</a></li>
+            <li><a href="about.html">关于我</a></li>
         </ul>
     </header>
-    <div class="content">
-        <h1 class="main-title">walden</h1>
-        <h2 class="subtitle">割完麦子，我就往南走</h2>
-        <p style="font-size: 14px; color: white; margin-top: 10px;"><a style="color: white;" href="privacy-policy.html">隐私政策</a></p>
+
+    <div class="content-container">
+        <!-- 第一屏：首页 -->
+        <div class="section hero-section">
+            <h1 class="main-title">
+                <span>W</span>
+                <span>A</span>
+                <span>L</span>
+                <span>D</span>
+                <span>E</span>
+                <span>N</span>
+            </h1>
+            <h2 class="subtitle">割完麦子，我就往南走</h2>
+        </div>
+
+        <!-- 第二屏：作品展示 -->
+        <div class="section">
+            <h2 class="section-title">我的作品</h2>
+            <div class="featured-works">
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&auto=format" alt="数字银行App">
+                    <div class="work-card-content">
+                        <h3>数字银行App设计</h3>
+                        <p>重新定义移动支付体验</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&auto=format" alt="健康监测App">
+                    <div class="work-card-content">
+                        <h3>健康监测平台</h3>
+                        <p>个性化的健康管理体验</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=500&auto=format" alt="办公协作平台">
+                    <div class="work-card-content">
+                        <h3>远程办公协作平台</h3>
+                        <p>提升队协作效率</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=500&auto=format" alt="智能家居控制">
+                    <div class="work-card-content">
+                        <h3>智能家居控制中心</h3>
+                        <p>打造智能生活方式</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三屏项目展示 -->
+        <div class="section">
+            <h2 class="section-title">重点项目</h2>
+            <div class="featured-works">
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&auto=format" alt="数据分析平台">
+                    <div class="work-card-content">
+                        <h3>企业数据分析平台</h3>
+                        <p>数据可视化解决方案</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&auto=format" alt="旅行App">
+                    <div class="work-card-content">
+                        <h3>智能旅行助手</h3>
+                        <p>一站式旅行解决方案</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=500&auto=format" alt="教育平台">
+                    <div class="work-card-content">
+                        <h3>在线教育平台</h3>
+                        <p>创新学习体验</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="https://images.unsplash.com/photo-1595776613215-fe04b78de7d0?w=500&auto=format" alt="音乐App">
+                    <div class="work-card-content">
+                        <h3>音乐流媒体App</h3>
+                        <p>重新定义音乐体验</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四屏：关于我 -->
+        <div class="section">
+            <h2 class="section-title">关于我</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - 现在</div>
+                    <div class="timeline-content">
+                        <h3>高级用户体验设计师</h3>
+                        <p>专注于新产品设计和用户体验优化</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2024</div>
+                    <div class="timeline-content">
+                        <h3>产品设计师</h3>
+                        <p>负责多个重点项目的界面设计和交互设计</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 - 2021</div>
+                    <div class="timeline-content">
+                        <h3>UI设计师</h3>
+                        <p>参与多个移动应用和网站的界面设计</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2024 您的公司名称. 保留所有权利。</p>
-        <p style="font-size: 14px; color: white; margin-top: 10px;"><a style="color: white;" href="privacy-policy.html">隐私政策</a></p>
+
+    <footer class="footer">
+        <a href="privacy-policy.html">隐私政策</a>
     </footer>
+
+    <script>
+    class Particle {
+        constructor(canvas) {
+            this.canvas = canvas;
+            this.ctx = canvas.getContext('2d');
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 12 + 1; // 1-13px
+            this.speedX = (Math.random() * 1.5 - 0.75) * (this.size / 13); // 速度与大小相关
+            this.speedY = (Math.random() * 1.5 - 0.75) * (this.size / 13);
+            this.color = this.getRandomColor();
+            this.opacity = (Math.random() * 0.4 + 0.1) * (1 - this.size / 13); // 大圆点更透明
+        }
+
+        getRandomColor() {
+            const colors = [
+                'rgba(147, 112, 219, ', // 紫色
+                'rgba(138, 43, 226, ',  // 紫罗兰
+                'rgba(75, 0, 130, ',    // 靛青
+                'rgba(106, 90, 205, ',  // 石板蓝
+                'rgba(123, 104, 238, ', // 中紫色
+                'rgba(148, 87, 235, ',  // 淡紫色
+                'rgba(180, 151, 231, ', // 浅紫色
+                'rgba(216, 191, 216, ', // 蓟色
+                'rgba(221, 160, 221, '  // 梅红色
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // 边界检查
+            if (this.x > this.canvas.width || this.x < 0) {
+                this.speedX = -this.speedX;
+            }
+            if (this.y > this.canvas.height || this.y < 0) {
+                this.speedY = -this.speedY;
+            }
+        }
+
+        draw() {
+            this.ctx.beginPath();
+            this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            this.ctx.fillStyle = this.color + this.opacity + ')';
+            this.ctx.fill();
+        }
+    }
+
+    class ParticleAnimation {
+        constructor() {
+            this.canvas = document.getElementById('particleCanvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.particles = [];
+            this.numberOfParticles = 100; // 增加粒子数量
+
+            this.init();
+            this.animate();
+            this.handleResize();
+        }
+
+        init() {
+            this.setCanvasSize();
+            this.createParticles();
+        }
+
+        setCanvasSize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+
+        createParticles() {
+            for (let i = 0; i < this.numberOfParticles; i++) {
+                this.particles.push(new Particle(this.canvas));
+            }
+        }
+
+        handleResize() {
+            window.addEventListener('resize', () => {
+                this.setCanvasSize();
+                this.particles = [];
+                this.createParticles();
+            });
+        }
+
+        animate() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            this.particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(this.animate.bind(this));
+        }
+    }
+
+    // 初始化动画
+    new ParticleAnimation();
+    </script>
+
+    <script>
+    // 监听滚动事件，控制页脚显示
+    const footer = document.querySelector('.footer');
+    const container = document.querySelector('.content-container');
+    
+    container.addEventListener('scroll', () => {
+        const scrollPosition = container.scrollTop + container.clientHeight;
+        const totalHeight = container.scrollHeight;
+        
+        // 当滚动到最后一屏时显示页脚
+        if (totalHeight - scrollPosition < 50) { // 添加一些容差值
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const loadingScreen = document.querySelector('.loading-screen');
+        const loadingProgress = document.querySelector('.loading-progress');
+        const mainContent = document.querySelector('.content-container');
+        const letters = document.querySelectorAll('[data-letter]');
+        let letterIndex = 0;
+
+        // 隐藏主内容
+        mainContent.style.opacity = '0';
+        mainContent.style.transition = 'opacity 0.5s ease';
+
+        // 逐个点亮字母
+        function lightUpNextLetter() {
+            if (letterIndex < letters.length) {
+                letters[letterIndex].classList.add('active');
+                loadingProgress.style.width = `${((letterIndex + 1) / letters.length) * 100}%`;
+                letterIndex++;
+                setTimeout(lightUpNextLetter, 300);
+            } else {
+                loadingScreen.classList.add('fade-out');
+                mainContent.style.opacity = '1';
+            }
+        }
+
+        // 开始字母点亮动画
+        setTimeout(lightUpNextLetter, 300);
+
+        // 3.5秒后移除加载屏幕
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 4500);
+    });
+    </script>
 </body>
 </html>

@@ -5,21 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walden - 关于我</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .content-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            padding: 0 40px;
+        }
+
+        .about-content {
+            background: rgba(13, 13, 31, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 30px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-info h1 {
+            font-size: 28px;
+            margin: 0 0 10px 0;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .profile-info p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-container {
+                padding: 0 20px;
+                margin: 80px auto 40px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <canvas id="particleCanvas"></canvas>
+    <div id="backgroundCanvas"></div>
+    <div class="gradient-background"></div>
+
     <header class="navbar">
-        <div class="logo"><img src="images/profile/logo.png" alt="网站 Logo" style="height: 40px;"></div>
+        <a href="index.html" class="logo">
+            <img src="images/profile/logo.png" alt="网站 Logo">
+            <span>Walden</span>
+        </a>
         <ul>
             <li><a href="index.html">首页</a></li>
             <li><a href="portfolio.html">我的作品</a></li>
-            <li><a href="blog.html">我的博客</a></li>
             <li><a href="projects.html">我的项目</a></li>
-            <li><a href="about.html">关于我</a></li>
+            <li><a href="blog.html">我的博客</a></li>
+            <li><a href="about.html" class="active">关于我</a></li>
         </ul>
     </header>
-    <div class="content">
-        <h1>关于我</h1>
-        <p>这里是关于我的信息。</p>
+
+    <div class="content-container">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="profile-header">
+                    <img src="images/profile/logo.png" alt="个人照片" class="profile-image">
+                    <div class="profile-info">
+                        <h1>Walden</h1>
+                        <p>高级用户体验设计师 / 产品设计师</p>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <p>你好，我是 Walden，一名专注于用户体验和产品设计的设计师。在过去的五年里，我致力于创造直观、美观且高效的数字产品，帮助用户解决实际问题。</p>
+                    
+                    <p>我相信优秀的设计应该是简单而优雅的，就像大自然中的规律一样。正如梭罗在瓦尔登湖畔追求简单生活��样，我也在设计中追求简约而不简单的美。</p>
+                    
+                    <p>目前，我专注于新产品的设计和用户体验优化，同时也在探索 AI 在设计领域的应用。我热衷于将复杂的问题简单化，让技术服务于人性化的设计。</p>
+                </div>
+
+                <div class="skills">
+                    <span class="skill-tag">UI/UX 设计</span>
+                    <span class="skill-tag">产品设计</span>
+                    <span class="skill-tag">交互设计</span>
+                    <span class="skill-tag">用户研究</span>
+                    <span class="skill-tag">设计系统</span>
+                    <span class="skill-tag">原型设计</span>
+                    <span class="skill-tag">视觉设计</span>
+                    <span class="skill-tag">用户体验</span>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer class="footer">
+        <a href="privacy-policy.html">隐私政策</a>
+    </footer>
+
+    <!-- 添加动态背景代码 -->
+    <script src="js/background-animation.js"></script>
+
+    <script>
+    // 页脚显示控制
+    const footer = document.querySelector('.footer');
+    const container = document.querySelector('.content-container');
+    
+    container.addEventListener('scroll', () => {
+        const scrollPosition = container.scrollTop + container.clientHeight;
+        const totalHeight = container.scrollHeight;
+        
+        if (totalHeight - scrollPosition < 50) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+    });
+    </script>
 </body>
 </html>

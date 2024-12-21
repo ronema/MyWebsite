@@ -5,21 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walden - 我的博客</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .content-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            padding: 0 40px;
+        }
+
+        .blog-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: rgba(13, 13, 31, 0.4);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            height: 160px;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            background: rgba(13, 13, 31, 0.6);
+        }
+
+        .blog-card-image {
+            width: 187px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .blog-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .blog-title {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 900px) {
+            .blog-card {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .blog-card-image {
+                width: 100%;
+                height: 160px;
+            }
+
+            .blog-container {
+                padding: 0 20px;
+                margin: 80px auto 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo"><img src="images/profile/logo.png" alt="网站 Logo" style="height: 40px;"></div>
+    <canvas id="particleCanvas"></canvas>
+    <div id="backgroundCanvas"></div>
+    <div class="gradient-background"></div>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/profile/logo.png" alt="网站 Logo">
+            <span>Walden</span>
+        </a>
         <ul>
-            <li><a href="../index.html">首页</a></li>
-            <li><a href="../portfolio.html">我的作品</a></li>
-            <li><a href="blog.html">我的博客</a></li>
-            <li><a href="../projects.html">我的项目</a></li>
-            <li><a href="../about.html">关于我</a></li>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="portfolio.html">我的作品</a></li>
+            <li><a href="projects.html">我的项目</a></li>
+            <li><a href="blog.html" class="active">我的博客</a></li>
+            <li><a href="about.html">关于我</a></li>
         </ul>
     </header>
-    <div class="content">
-        <h1>我的博客</h1>
-        <p>这里是我的博客文章。</p>
+
+    <div class="content-container">
+        <div class="blog-container">
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500" alt="编程思考">
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blog-title">现代前端开发的思考与实践</h2>
+                        <div class="blog-date">2024年3月15日</div>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500" alt="设计系">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年3月10日</div>
+                        <h2 class="blog-title">构建可扩展的设计系统</h2>
+                        <p class="blog-excerpt">如何构建一个既能满足当前需求，又具有良好扩展性的设计系统？本文将从实际案例出发，分享设计系统的构建经验。</p>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500" alt="团队协作">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年3月5日</div>
+                        <h2 class="blog-title">远程团队的高效协作实践</h2>
+                        <p class="blog-excerpt">在远程办公成为常态的今天，如何保持团队的高效协作？分享一些实用的工具和方法帮助提升远程团队的工作效率。</p>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=500" alt="AI开发">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">2024年3月1日</div>
+                        <h2 class="blog-title">AI 驱动的开发效率提升</h2>
+                        <p class="blog-excerpt">探索如何利用 AI 工具提升开发效率，从代码补全到自动化测试，分享实用的 AI 开发工具和最佳实践。</p>
+                    </div>
+                </article>
+            </div>
+        </div>
     </div>
+
+    <footer class="footer">
+        <a href="privacy-policy.html">隐私政策</a>
+    </footer>
+
+    <script src="js/background-animation.js"></script>
+    <script>
+    // 监听滚动事件，控制页脚显示
+    const footer = document.querySelector('.footer');
+    const container = document.querySelector('.content-container');
+    
+    container.addEventListener('scroll', () => {
+        const scrollPosition = container.scrollTop + container.clientHeight;
+        const totalHeight = container.scrollHeight;
+        
+        if (totalHeight - scrollPosition < 50) {
+            footer.classList.add('visible');
+        } else {
+            footer.classList.remove('visible');
+        }
+    });
+    </script>
 </body>
 </html>
