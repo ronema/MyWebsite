@@ -298,7 +298,7 @@
                 letters[letterIndex].classList.add('active');
                 loadingProgress.style.width = `${((letterIndex + 1) / letters.length) * 100}%`;
                 letterIndex++;
-                setTimeout(lightUpNextLetter, 300);
+                setTimeout(lightUpNextLetter, 200);
             } else {
                 loadingScreen.classList.add('fade-out');
                 mainContent.style.opacity = '1';
@@ -311,7 +311,32 @@
         // 3.5秒后移除加载屏幕
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-        }, 4500);
+        }, 2500);
+    });
+    </script>
+
+    <script>
+    // 监听滚动,添加动画效果
+    function checkScroll() {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight * 0.75) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+    }
+
+    // 监听容器的滚动事件
+    document.querySelector('.content-container').addEventListener('scroll', checkScroll);
+
+    // 页面加载完成后,触发一次检查
+    document.addEventListener('DOMContentLoaded', () => {
+        checkScroll();
     });
     </script>
 </body>

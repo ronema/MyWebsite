@@ -267,7 +267,22 @@ html {
     position: relative;
     overflow: hidden;
     padding: 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+.section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 为每个section添加不同的延迟,创造层次感 */
+.section:nth-child(1) { transition-delay: 0.2s; }
+.section:nth-child(2) { transition-delay: 0.4s; }
+.section:nth-child(3) { transition-delay: 0.6s; }
+.section:nth-child(4) { transition-delay: 0.8s; }
 
 /* 添加容器样式 */
 .content-container {
@@ -308,14 +323,35 @@ html {
 
 /* 优化卡片样式 */
 .work-card {
-    background: rgba(13, 13, 31, 0.4); /* 更透明的背景 */
+    background: rgba(13, 13, 31, 0.4);
     border-radius: 16px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
 }
 
+/* 为每个卡片添加不同的延迟，总时长控制在2秒内 */
+.section.active .work-card:nth-child(1) { 
+    transition-delay: 0.1s;
+}
+.section.active .work-card:nth-child(2) { 
+    transition-delay: 0.3s;
+}
+.section.active .work-card:nth-child(3) { 
+    transition-delay: 0.5s;
+}
+.section.active .work-card:nth-child(4) { 
+    transition-delay: 0.7s;
+}
+
+/* 当section激活时显示卡片 */
+.section.active .work-card {
+    opacity: 1;
+}
+
+/* 修改hover效果 */
 .work-card:hover {
     transform: translateY(-8px);
     border-color: rgba(255, 255, 255, 0.1);
@@ -450,7 +486,7 @@ html {
     position: relative;
 }
 
-/* 时间轴项目样式 */
+/* 时间轴目样式 */
 .timeline-item {
     position: relative;
     padding: 20px 0 20px 40px;
@@ -584,7 +620,7 @@ html {
     text-align: center;
     opacity: 0; /* 默认隐藏 */
     transition: opacity 0.3s ease;
-    pointer-events: none; /* 默���不可点击 */
+    pointer-events: none; /* 默认不可点击 */
 }
 
 .footer.visible {
@@ -623,24 +659,29 @@ html {
 
 .loading-logo {
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.loading-logo img {
-    display: none;  /* 隐藏图片 */
-}
-
-.loading-logo span {
+.loading-logo > span {
     font-size: 60px;
     font-weight: 800;
-    letter-spacing: 0.8em;
+    letter-spacing: 2em;
     text-transform: uppercase;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2em;
 }
 
 .loading-logo span[data-letter] {
     opacity: 1;
-    transition: color 0.3s ease, opacity 0.3s ease;  /* 添加 opacity 的过渡效果 */
-    color: rgba(255, 255, 255, 0.3);  /* 默认显示淡色 */
+    transition: color 0.3s ease, opacity 0.3s ease;
+    color: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    margin: 0;
 }
 
 .loading-logo span[data-letter].active {
@@ -649,15 +690,15 @@ html {
 }
 
 .loading-bar {
-    width: calc(120px + 0.8em * 5);  /* WALDEN 的宽度 */
+    width: calc(120px + 2em * 5);
     height: 3px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
     margin-top: 30px;
-    position: relative;  /* 使其相对定位 */
-    left: 50%;  /* 向右移动 */
-    transform: translateX(-50%);  /* 居中 */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .loading-progress {
@@ -670,4 +711,42 @@ html {
 .loading-screen.fade-out {
     opacity: 0;
     pointer-events: none;
+}
+
+/* 联系方式样式 */
+.contact-info {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.email-link:hover {
+    color: #0AE5DD;
+    background: rgba(10, 229, 221, 0.1);
+}
+
+.email-link svg {
+    transition: transform 0.3s ease;
+}
+
+.email-link svg,
+.email-link span {
+    transition: transform 0.3s ease;
+}
+
+.email-link:hover svg,
+.email-link:hover span {
+    transform: translateY(-2px);
 }
