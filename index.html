@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walden - 首页</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .my-projects .work-card {
+            cursor: pointer;
+        }
+        .my-projects .work-card-content {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div class="loading-screen">
@@ -93,14 +101,14 @@
         </div>
 
         <!-- 第三屏项目展示 -->
-        <div class="section">
-            <h2 class="section-title">重点项目</h2>
+        <div class="section my-projects">
+            <h2 class="section-title">我的项目</h2>
             <div class="featured-works">
-                <div class="work-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&auto=format" alt="数据分析平台">
+                <div class="work-card" onclick="window.open('https://www.figma.com/community/plugin/1453358435186541227/gradcover', '_blank')">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&auto=format" alt="GradCover">
                     <div class="work-card-content">
-                        <h3>企业数据分析平台</h3>
-                        <p>数据可视化解决方案</p>
+                        <h3>GradCover</h3>
+                        <p>一键生成漂亮的渐变封面，自动获取文件名和当前时间</p>
                     </div>
                 </div>
                 <div class="work-card">
